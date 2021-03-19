@@ -11,12 +11,12 @@ import {connect} from "react-redux";
 
 const mapStateToProps = state => {
     return {
-        compsites: state.campsites,
+        campsites: state.campsites,
         comments: state.comments,
         partners: state.partners,
         promotions: state.promotions
-    }
-}
+    };
+};
 
 class Main extends Component {
 
@@ -26,14 +26,13 @@ class Main extends Component {
 
         const HomePage = () => {
             return (
-                <Home 
+                <Home
                     campsite={this.props.campsites.filter(campsite => campsite.featured)[0]}
-                    comment={this.props.comments.filter(comment => comment.featured)[0]}
-                    partner={this.props.partners.filter(partner => partner.featured)[0]}
                     promotion={this.props.promotions.filter(promotion => promotion.featured)[0]}
+                    partner={this.props.partners.filter(partner => partner.featured)[0]}
                 />
-            )
-        }
+            );
+        };
 
         const CampsiteWithId = ({match}) => {
             return (
