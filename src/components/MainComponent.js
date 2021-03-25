@@ -9,7 +9,7 @@ import Contact from './ContactComponent';
 import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import {actions} from "react-redux-form";                              
-import {addComment, fetchCampsites, fetchComments, fetchPromotions} from "../redux/ActionCreator";
+import {postComment, fetchCampsites, fetchComments, fetchPromotions} from "../redux/ActionCreator";
 
 const mapStateToProps = state => {
     return {
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
+    postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text)),
     fetchCampsites: () => (fetchCampsites()),
     fetchComments: () => (fetchComments()),
     fetchPromotions: () => (fetchPromotions()),
@@ -61,7 +61,7 @@ class Main extends Component {
                     comments={this.props.comments.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
                     commentsLoading={this.props.comments.isLoading}
                     commentsErrMess={this.props.comments.errMess}
-                    addComment={this.props.addComment}
+                    postComment={this.props.postComment}
                 />
             )
         }
