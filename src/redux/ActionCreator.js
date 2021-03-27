@@ -147,3 +147,42 @@ export const addPromotions = promotions => ({
     type: ActionTypes.ADD_PROMOTIONS,
     payload: promotions
 });
+
+export const postFeedback = (firstname, lastname, phoneNum, email, agree, contactType, feedback) => dispatch => {
+    const newFeedback = {
+        firstname: firstname,
+        lastname: lastname,
+        phoneNum: phoneNum,
+        email: email,
+        agree: agree,
+        contactType: contactType,
+        feedback: feedback
+    };
+
+    return fetch(baseUrl + "feedback", {
+        method: "POST",
+        body: JSON.stringify(newFeedback),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(
+        response => {
+            if (response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {throw error;}
+    )
+    .then(response => response.json())
+    .then(alert("Thank you for your feedback! \n" + newFeedback))
+    //.then(response => dispatch(addComments(response)))
+    .catch(error => {
+        console.log('post comment', error.message);
+        alert('Your comment could not be posted\nError: ' + error.message);
+    });
+};
