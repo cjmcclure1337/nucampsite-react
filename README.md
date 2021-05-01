@@ -1,3 +1,7 @@
+# Nucamp Site (react)
+
+Created alongside instructional modules as part of Nucamp's Front End Development bootcamp.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
